@@ -9,19 +9,21 @@ struct DADOS{
   int aci;
 }dados[N];
 
-int acidentes(char est[],int tam){
-  int i,cont,max=0,pos;
+float acidentes(char est[],int tam){
+
+  int i,cont,max = 0,pos;
   float res;
 
-  for(i = 0;i < N;i++){
+  for(i = 0;i < N;i++){                                                                                                                                                                                                                     
       cont = dados[i].aci;
       max += cont;
   }
   pos = buscaPosi(est,strlen(est));
   res = dados[i].aci / max;
-
-
+  
+  return res;
 }
+
 int buscaPosi(char estado[],int tam){
 
     int pos;
@@ -68,7 +70,7 @@ void maior(){
     printf("Menor indice = %d\nEstado = %s\n\n",menor,estadoN);
 }
 
-void percentual(char est[],int tam){
+float percentual(char est[],int tam){
     int vei,todo=0,cont,pos;
     float media;
 
@@ -80,11 +82,51 @@ void percentual(char est[],int tam){
 
     media = (dados[pos].vei / todo) * 100;
 
-    printf("Percentual = %f\n",media);
+    return media;
+}
+
+int menu(){
+
+    int op;
+
+    printf("O que deseja saber?\n1 - Qual o maior e o menor índice de acidentes de trânsito e o nome dos estados em que eles ocorreram.\n2 - Qual o percentual de veículos em cada estado.\n3 - Qual a média de acidentes em cada um dos estados.\n0 - Para sair");
+    printf("Opcao :\n");
+    scanf("%d",&op);
+
+    return op;
 }
 
 
 int main(){
+
+    int op;
+    char estado[100];
+    float perc;
+    preenche();
+
+    do{
+        op = menu();
+
+        switch(op){
+
+            case 1: maior();
+                    break;
+
+            case 2: printf("Digite o nome do estado:\n");
+                    scanf("%[^\n]",estado);
+
+                   perc = percentual(estado,strlen(estado));
+                   printf("Percentual = %f\n",perc);
+                   break;
+
+            case 3:printf("Digite o nome do estado:\n");
+                   scanf("%[^\n]",estado);
+
+                   perc = acidentes(estado,strlen(estado));
+        }
+         
+    }
+    while(op!=0);
 
 
 
