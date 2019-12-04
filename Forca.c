@@ -6,8 +6,8 @@
 
 
 int main(){
-  char tent,tentM,tentN,c,ini[N];
-  int chan=6,tam,op,i,pos,cont=0,gan = 0,perd = 0,gan2 = 0;
+  char tent,op,tentM,tentN,c,ini[N];
+  int chan=6,tam,i,pos,cont=0,gan = 0,perd = 0,gan2 = 0;
 
   FILE *sec;
 
@@ -21,7 +21,7 @@ int main(){
       fscanf(sec," %[^\n]",ini);
       tam = strlen(ini);
 
-      char seg[tam],tenta[tam],acertos[tam],erros[6];
+      char seg[tam],tenta[tam],acertos[tam],erros[7];
 
       strcpy(seg,ini);
 
@@ -65,11 +65,14 @@ int main(){
 
 
        printf("\n1 - Para tentar uma letra\n2 - Para tentar a frase\n");
-       scanf("%d",&op);
-
+       scanf(" %c",&op);
+       while(op != '1' && op != '2'){
+            printf("Digita 1 ou 2 fi!\n"); 
+            scanf(" %c",&op);
+       }
          switch(op){
 
-           case 1:printf("\nLetra = ");
+           case '1':printf("\nLetra = ");
                   scanf(" %c",&tent);
 
                   tentM = toupper(tent);
@@ -88,36 +91,36 @@ int main(){
                      chan--;
                   }
 
-                  if(strcmpi(acertos,seg) == 1)
+                  if(strcasecmp(acertos,seg) == 1)
                      gan2 = 1;
 
                   printf("\n\n");
                   break;
 
-            case 2:printf("\nDigite a frase = ");
+            case '2':printf("\nDigite a frase = ");
                    scanf(" %[^\n]",tenta);
 
-                   if(strcmpi(tenta,seg) == 0)
+                   if(strcasecmp(tenta,seg) == 0)
                       gan = 1;
 
                    else
                       perd = 1;
-
                   break;
          }
     }
      while(gan == 0 && perd == 0 && chan != 0 && gan2 == 0);
 
      if(gan == 1 || gan2 == 1){
-        printf("\n!!!!!!!!!!Parabens voce ganhou!!!!!!!!!!\n!!!!!!!!!!a palavra era: %s!!!!!!!!!!",seg);
-        return 0;
+        printf("\n!!!!!!!!!!Parabens voce ganhou!!!!!!!!!!\n!!!!!!!!!!A palavra era: %s!!!!!!!!!!\n\n",seg);
+
      }
 
-     if(perd == 1 || chan == 0)
+     if(perd == 1 || chan == 0){
         printf("\n |==|\n |  o\n | /|\\\n | / \\\n | \n/ \\");
         printf("\t\tPerdeste\n");
         printf("\t\tA palavra era: %s",seg);
 
+     }
   }
 }
 
