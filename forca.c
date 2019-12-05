@@ -22,7 +22,7 @@ int main(){
       tam = strlen(ini);
 
       char seg[tam],tenta[tam],acertos[tam],erros[7];
-
+      
       strcpy(seg,ini);
 
        printf("\t\t\tNumero de letras = %d\n",tam);
@@ -66,6 +66,8 @@ int main(){
 
        printf("\n1 - Para tentar uma letra\n2 - Para tentar a frase\n");
        scanf(" %c",&op);
+
+       //Caso a pessoa não digite 1 ou 2
        while(op != '1' && op != '2'){
             printf("Digita 1 ou 2 fi!\n"); 
             scanf(" %c",&op);
