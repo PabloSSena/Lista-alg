@@ -22,7 +22,7 @@ int main(){
       tam = strlen(ini);
 
       char seg[tam],tenta[tam],acertos[tam],erros[7];
-      
+
       strcpy(seg,ini);
 
        printf("\t\t\tNumero de letras = %d\n",tam);
@@ -124,4 +124,6 @@ int main(){
 
      }
   }
+
+  fclose(arq);
 }
